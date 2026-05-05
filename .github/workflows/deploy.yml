@@ -14,3 +14,6 @@ jobs:
 
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist
+
+      - name: Run CodeIgniter tests
+        run: php vendor/bin/phpunit

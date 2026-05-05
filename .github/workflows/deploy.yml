@@ -10,10 +10,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: intl, mbstring, json, mysqlnd
+          coverage: none
 
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist
+
+      - name: Check PHPUnit exists
+        run: ls -la vendor/bin
 
       - name: Run CodeIgniter tests
         run: php vendor/bin/phpunit
